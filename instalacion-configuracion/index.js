@@ -1,6 +1,6 @@
 // 01 Importamos la dependencia de Express
-const { urlencoded } = require('express');
 const express = require('express');
+const morgan = require('morgan');
 
 // 02 Creamos una instancia de Express
 const app = express();
@@ -14,8 +14,13 @@ const PORT = 8000;
 
 // Middleware incorporado (built-in)
 app.use(express.urlencoded({extended: true}));// Atiende cualquier tipo de petición y respuesta hacia el cliente
+app.use(express.json());
 // app.use(express.urlencoded({extended: true})) -> Decodifica los datos que son enviados a través de x-www-urlencoded
 // y los coloca en request.body
+// express.json() -> Nos ayuda a obtener los datos que son enviados en formato JSON
+
+// Middleware de terceros (third party)
+app.use(morgan('dev'));
 
 
 app.get('/', (request, response) => {
@@ -23,7 +28,7 @@ app.get('/', (request, response) => {
   response.send('Hi there, I am Enver');
 }); // Atiende peticiones a través del método get
 
-app.get('/tareas', (request, response) => {
+app.get('/tasks', (request, response) => {
   response.json([{
     tarea01: 'Hacer React',
     tarea02: 'Hacer Node',
