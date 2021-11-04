@@ -12,8 +12,12 @@ const getAllTasks = async () => {
   }
 };
 
-// const getTaskById = () => {};
+const getTaskById = async (id) => {
+  const tasks = await getAllTasks();
+  return tasks.find((task) => task.id === id);
+};
 
 module.exports = {
   getAllTasks,
+  getTaskById,
 };
