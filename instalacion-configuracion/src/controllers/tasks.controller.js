@@ -1,11 +1,11 @@
 const { getAllTasks, getTaskById } = require('../services/tasks.services');
 
-const getTasksCtrl = async (request, response) => {
+const getTasksCtrl = async (request, response, next) => {
   try {
     const tasks = await getAllTasks();
     response.json(tasks);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 

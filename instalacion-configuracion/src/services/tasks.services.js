@@ -8,7 +8,7 @@ const getAllTasks = async () => {
     const tasks = await fs.readFile(taskPath, 'utf-8');
     return JSON.parse(tasks);
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
