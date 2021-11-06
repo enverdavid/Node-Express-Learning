@@ -1,4 +1,4 @@
-const { getAllTasks, getTaskById } = require('../services/tasks.services');
+const { getAllTasks, getTaskById, addTask } = require('../services/tasks.services');
 
 const getTasksCtrl = async (request, response, next) => {
   try {
@@ -9,18 +9,34 @@ const getTasksCtrl = async (request, response, next) => {
   }
 };
 
-const getTaskByIdCtrl = async (request, response) => {
+const getTaskByIdCtrl = async (request, response, next) => {
   const { id } = request.params;
   const idInt = parseInt(id, 10);
   try {
     const task = await getTaskById(idInt);
     response.json(task);
   } catch (error) {
-    console.log(error);
+    next(error);
+  }
+};
+
+const postTaskControl = async (req, res, next) => {
+  const { title, description } = req.body; // Desestructuramos
+  try {
+    const newTask = {
+      title,
+      description,
+    };
+    // Enviamos la tarea al servicio
+    const response = await addTask(newTask);
+    res.status(201).json(response);
+  } catch (error) {
+    next(error);
   }
 };
 
 module.exports = {
   getTasksCtrl,
   getTaskByIdCtrl,
+  postTaskControl,
 };

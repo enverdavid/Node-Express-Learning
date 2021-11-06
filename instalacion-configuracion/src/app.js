@@ -17,7 +17,7 @@ const app = express();
 */
 
 // routs -> controllers -> services
-
+app.use(express.json());
 app.use(tasksRoutes);
 
 app.get('/prueba', (req, res, next) => {
