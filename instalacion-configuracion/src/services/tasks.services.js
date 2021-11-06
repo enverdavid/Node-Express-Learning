@@ -50,8 +50,46 @@ const addTask = async (newTask) => {
   }
 };
 
+const updateTask = async (id, task) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const tasks = await getAllTasks(); // Obtenemos todas las tareas
+
+    // Buscamos la tarea que queremos actualizar
+    const taskIndex = tasks.findIndex((e) => e.id === id);
+
+    const updatedTask = {
+      ...tasks[taskIndex],
+      ...task,
+    };
+
+    // Remplazar la tarea actualizada
+    tasks[taskIndex] = updatedTask;
+    tasks.splice(taskIndex, 0, updatedTask);
+    await writeTasks(tasks);
+    return updatedTask;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const deleteTask = async (id) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const tasks = await getAllTasks();
+    const taskIndex = tasks.findIndex((e) => e.id === id);
+    tasks.splice(taskIndex, 1);
+    await writeTasks(tasks);
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllTasks,
   getTaskById,
   addTask,
+  updateTask,
+  deleteTask,
 };

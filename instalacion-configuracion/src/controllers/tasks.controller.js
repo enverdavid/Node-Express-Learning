@@ -1,4 +1,10 @@
-const { getAllTasks, getTaskById, addTask } = require('../services/tasks.services');
+const {
+  getAllTasks,
+  getTaskById,
+  addTask,
+  updateTask,
+  deleteTask,
+} = require('../services/tasks.services');
 
 const getTasksCtrl = async (request, response, next) => {
   try {
@@ -35,8 +41,33 @@ const postTaskControl = async (req, res, next) => {
   }
 };
 
+const putTaskCtrl = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const task = req.body;
+    // Enviamos la tarea al servicio
+    await updateTask(parseInt(id, 10), task);
+    res.status(204).json();
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteTaskCtrl = async (req, res, next) => {
+  const { id } = req.params; // Desestructuramos
+  try {
+    // Enviamos la tarea al servicio
+    await deleteTask(parseInt(id, 10));
+    res.status(204).json();
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getTasksCtrl,
   getTaskByIdCtrl,
   postTaskControl,
+  putTaskCtrl,
+  deleteTaskCtrl,
 };

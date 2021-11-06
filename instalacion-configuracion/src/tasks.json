@@ -1,27 +1,17 @@
 [
   {
     "id": 1,
-    "title": "Estudiar Python",
-    "description": "Estudiar Data Science"
+    "title": "Estudiar Ui",
+    "description": "Figma"
   },
   {
-    "id": 2,
-    "title": "Estudiar Base de datos",
-    "description": "Normalización"
+    "id": 1,
+    "title": "Estudiar Ui",
+    "description": "Figma"
   },
   {
     "id": 3,
-    "title": "Hacer la tarea",
-    "description": "Completar el capítulo 10 de matemáticas"
-  },
-  {
-    "id": 4,
-    "title": "Hacer la tarea",
-    "description": "Completar el capítulo 10 de matemáticas"
-  },
-  {
-    "id": 5,
-    "title": "Hacer la tarea",
-    "description": "Completar el capítulo 10 de matemáticas"
+    "title": "Python",
+    "description": "machine learnig"
   }
 ]
