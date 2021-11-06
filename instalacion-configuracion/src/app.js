@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const tasksRoutes = require('./routes/tasks.routes');
 const middlewareError = require('./middlewares/error.middleware');
 
@@ -18,6 +19,7 @@ const app = express();
 
 // routs -> controllers -> services
 app.use(express.json());
+app.use(cors());
 app.use(tasksRoutes);
 
 app.get('/prueba', (req, res, next) => {
